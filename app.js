@@ -10,10 +10,12 @@ app.use(bodyParser.json());
 // requiring routes
 var animals = require('./routes/animals');
 var species = require('./routes/species');
+var occurences = require('./routes/occurences');
 
 // using routes
 app.use('/animals', animals);
 app.use('/species', species);
+app.use('/occurences', occurences);
 
 app.listen(8080, function() {
   console.log('app listening on port 8080')

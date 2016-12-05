@@ -38,7 +38,9 @@ module.exports = function(sequelize, DataTypes) {
         source: DataTypes.STRING,
         capture_time: DataTypes.TIME,
         arrival_time: DataTypes.TIME,
-        finish_time: DataTypes.TIME
+        finish_time: DataTypes.TIME,
+        age: DataTypes.STRING,
+        user_id: DataTypes.INTEGER
     }, {
         underscored: true,
         freezeTableName: true,
@@ -55,6 +57,7 @@ module.exports = function(sequelize, DataTypes) {
                 Encounter.hasMany(models.Sample);
                 Encounter.belongsTo(models.Project);
                 Encounter.hasMany(models.Comment);
+                Encounter.belongsTo(models.User);
             }
         }
     });

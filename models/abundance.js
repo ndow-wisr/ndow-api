@@ -18,7 +18,7 @@ module.exports = function(sequelize, DataTypes) {
         tableName: 'abundance',
         classMethods: {
             associate: function(models) {
-                Abundance.belongsTo(models.Encounter);
+                Abundance.belongsTo(models.Encounter, { onDelete: 'cascade', hooks: true });
             }
         }
     });
