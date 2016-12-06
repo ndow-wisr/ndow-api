@@ -5,6 +5,9 @@ const models = require('../models');
 // INDEX (get) - show all wildlife occurences (incidental occurences)
 router.get('/', (req, res) => {
   models.Encounter.findAll({
+    // TODO: how should I parse the querystring to put the proper variables in the proper model?
+      // where: {source: 'incidental occurence'},
+      order: [['enc_date', 'DESC']],
       attributes: ['id', 'enc_date', 'status', 'source', 'comments', 'user_id'],
       include: [{
         model: models.Animal,
