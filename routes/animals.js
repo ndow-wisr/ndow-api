@@ -1,6 +1,6 @@
-var express     = require('express'),
-    router      = express.Router(),
-    models      = require('../models');
+const express = require('express');
+const router = express.Router();
+const models = require('../models');
 
 
 // INDEX (get) - show all animals
@@ -63,7 +63,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
   models.Animal.create(req.body)
     .then(animal => {
-      res.status(200).json({
+      res.status(201).json({
         status: 'added animal to database',
         data: 'localhost:8080' + '/animals/' + animal.id
       });
@@ -80,7 +80,7 @@ router.put('/:id', (req, res) => {
     returning: true
   })
     .then(animal => {
-      res.status(200).json(animal);
+      res.status(202).json(animal);
     })
     .catch(err => {
       res.status(500).json(err);
