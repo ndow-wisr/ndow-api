@@ -1,25 +1,16 @@
-const express       = require('express');
-const bodyParser    = require('body-parser');
-const models        = require('./models');
-const app           = express();
+const express = require('express');
+const logger = require('morgan');
+const bodyParser = require('body-parser');
+const app = express();
 
-// app config
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(logger('dev'));
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-// requiring routes
-const animals = require('./routes/animals');
-const species = require('./routes/species');
-const occurences = require('./routes/occurences');
-const encounters = require('./routes/encounters');
-
-// using routes
-app.use('/animals', animals);
-app.use('/species', species);
-app.use('/occurences', occurences);
-app.use('/encounters', encounters);
-
-
-app.listen(8080, function() {
-  console.log('app listening on port 8080')
+app.get('*', (req, res) => {
+  res.status(200).json({
+    message: 'Nothing here'
+  });
 });
+
+module.exports = app;

@@ -49,6 +49,7 @@ router.get('/:id', (req, res) => {
     });
 });
 
+// CREATE (post) - create a new encounter, include Animal and Location.
 router.post('/', (req, res) => {
   models.Encounter.create(req.body, {
     include: [{
@@ -63,6 +64,36 @@ router.post('/', (req, res) => {
     .catch(err => {
       res.status(400).json(err);
     });
+});
+
+// UPDATE (put) - edit encounter data, only encounter, not Animal or Location
+router.put('/:id', (req, res) => {
+  models.Encounter.update(req.body, {
+    where: { id: req.params.id }
+  })
+    .then(rtn => {
+      res.status(200).json({
+        status: 'updated encounter',
+        self:'localhost:8080' + '/encounters/' + req.params.id,
+        data: rtn
+      });
+    })
+    .catch(err => {
+      res.status(400).json(err);
+    });
+});
+
+// DELETE (destroy) - delete an encounter, only the encounter however, Still need to work on cascading updates.
+router.delete('/:id', (req, res) => {
+  models.Encounter.destroy({
+    where: {id: req.params.id}
+  })
+    .then(rtn => {
+      res.status(200).json(rtn);
+    })
+    .catch(err => {
+      res.status(400).json(err);
+    })
 });
 
 module.exports = router;
