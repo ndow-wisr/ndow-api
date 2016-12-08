@@ -64,7 +64,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: true
       },
-      rel_location_id: {
+      rel_location_id: { // TODO: add relationship
         type: Sequelize.INTEGER
       },
       reencounter: {

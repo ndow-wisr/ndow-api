@@ -1,4 +1,4 @@
 node_modules
-config/*
-config/config.json
+server/config/*
+server/config/config.json
 *.DS_Store

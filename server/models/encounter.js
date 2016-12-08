@@ -96,6 +96,7 @@ module.exports = (sequelize, DataTypes) => {
         Encounter.belongsTo(models.Animal, { onDelete: 'SET NULL' });
         Encounter.belongsTo(models.Project, { onDelete: 'SET NULL' });
         Encounter.belongsTo(models.Location, { onDelete: 'SET NULL' });
+        Encounter.belongsTo(models.User, { onDelete: 'SET NULL' });
       }
     }
   });
