@@ -12,10 +12,11 @@ router.get('/', (req, res) => {
 // CREATE (post) - create a new animal
 router.post('/', (req, res) => {
   models.Animal.create(req.body)
+    // IDEA: this promise is always the same, add a parameter for the resource, then it is reproducible.
     .then(rtn => {
       res.status(201).json({
-        status: 'added animal to database',
-        self: 'localhost:8000' + '/animals/' + animal.id,
+        status: 'added new animal',
+        self: 'localhost:8000' + '/animals/' + rtn.id,
         data: rtn
       });
     })
@@ -47,7 +48,7 @@ router.delete('/:id', (req, res) => {
   models.Animal.destroy({
     where: { id: req.params.id }
   })
-    .then(rtn => res.status(204).json({ status: 'deleteded animal'}))
+    .then(rtn => res.status(204).json({ status: 'deleted animal'}))
     .catch(err => res.status(400).json(err));
 });
 

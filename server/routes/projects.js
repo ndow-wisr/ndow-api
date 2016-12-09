@@ -11,11 +11,11 @@ router.get('/', (req, res) => {
 
 // CREATE
 router.post('/', (req, res) => {
-  model.Project.create(req.body)
+  models.Project.create(req.body)
     .then(rtn => {
       res.status(201).json({
         status: 'add new project to the database',
-        self: 'localhost:8000' + '/projects/' + project.id,
+        self: 'localhost:8000' + '/projects/' + rtn.id,
         data: rtn
       });
     })

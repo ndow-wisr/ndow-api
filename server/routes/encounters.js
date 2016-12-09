@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 // SHOW
 router.get('/:id', (req, res) => {
   models.Encounter.findById(req.params.id)
-    .then(rtn => res.status(200).json(payload))
+    .then(rtn => res.status(200).json(rtn))
     .catch(err => res.status(400).json(err));
 });
 
@@ -22,7 +22,7 @@ router.post('/', (req, res) => {
     .then(rtn => {
       res.status(201).json({
         status: 'added animal to the database',
-        self: 'localhost:8000' + '/encounters/' + encounter.id,
+        self: 'localhost:8000' + '/encounters/' + rtn.id,
         data: rtn
       });
     })

@@ -14,7 +14,7 @@ router.post('/', (req, res) => {
   models.Location.create(req.body)
     .then(rtn => res.status(201).json({
       status: 'add new location to database',
-      self: 'localhost:8000' + '/locations/' + location.id,
+      self: 'localhost:8000' + '/locations/' + rtn.id,
       data: rtn
     }))
     .catch(err => res.status(400).json(err));
@@ -44,7 +44,7 @@ router.delete('/:id', (req, res) => {
   models.Location.destroy({
     where: { id: req.params.id }
   })
-    .then(() => res.status(204).json({ status: 'deleted locations from databasel'}))
+    .then(() => res.status(204).json({ status: 'deleted locations from database'}))
     .catch(err => res.status(400).json(err));
 });
 

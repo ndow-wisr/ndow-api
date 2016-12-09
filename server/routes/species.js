@@ -2,6 +2,7 @@ var express     = require('express'),
     router      = express.Router(),
     models      = require('../models');
 
+// TODO: fix these routes to work with new stuff
 // INDEX (get) - show all species
 router.get('/', (req, res) => {
   // get querystring for SQL where clause

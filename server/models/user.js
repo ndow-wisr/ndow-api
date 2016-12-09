@@ -2,29 +2,23 @@ module.exports = (sequelize, DataTypes) => {
   var User = sequelize.define('User', {
     username: {
       type: DataTypes.STRING,
-      validate: {
-        notNull: true
-      },
-      set: val => {
+      allowNull: false,
+      set: function(val) {
         this.setDataValue('username', val.toLowerCase());
       }
     },
     first_name: {
       type: DataTypes.STRING,
-      validate: {
-        notNull: true
-      }
+      allowNull: false
     },
     last_name: {
       type: DataTypes.STRING,
-      validate: {
-        notNull: true
-      }
+      allowNull: false
     },
     email: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        notNull: true,
         isEmail: true
       }
     },
@@ -32,21 +26,16 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       defaultValue: 'public',
       validate: {
-        notNull: true,
         isIn: [['public', 'employee', 'admin', 'super']]
       }
     },
     division: {
       type: DataTypes.STRING,
-      validate: {
-        notNull: true
-      }
+      allowNull: false
     },
     password: {
       type: DataTypes.STRING,
-      validate: {
-        notNull: true
-      }
+      allowNull: false
     }
   }, {
     paranoid: true,

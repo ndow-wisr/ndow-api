@@ -15,7 +15,7 @@ router.post('/', (req, res) => {
     .then(rtn => {
       res.status(201).json({
         status: 'added user to database',
-        self: 'localhost:8000' + '/users/' + user.id,
+        self: 'localhost:8000' + '/users/' + rtn.id,
         data: rtn
       });
     })
