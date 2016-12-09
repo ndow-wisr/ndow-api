@@ -4,25 +4,52 @@ const models = require('../models');
 
 // INDEX (get) - show all animals
 router.get('/', (req, res) => {
-  models.Animal.findAll()
+  models.Animal.findAll({ paranoid: false })
     .then(rtn => res.status(200).json(rtn))
-    .catch(rtn => res.status(400).json(err));
+    .catch(err => res.status(400).json(err));
 });
 
 // CREATE (post) - create a new animal
 router.post('/', (req, res) => {
   models.Animal.create(req.body)
-    .then(animal => {
+    .then(rtn => {
       res.status(201).json({
         status: 'added animal to database',
-        data: 'localhost:8080' + '/animals/' + animal.id
+        self: 'localhost:8000' + '/animals/' + animal.id,
+        data: rtn
       });
     })
-    .catch(err => {
-      res.status(400).json(err);
-    })
+    .catch(err => res.status(400).json(err));
 });
 
+// SHOW (get) - get a single animal by id
+router.get('/:id', (req, res) => {
+  models.Animal.findById(req.params.id)
+    .then(rtn => res.status(200).json(rtn))
+    .catch(err => res.status(400).json(err));
+});
+
+// UPDATE (put) - update a single instance by id
+router.put('/:id', (req, res) => {
+  models.Animal.update(req.body, {
+    where: {id: req.params.id}
+  })
+    .then(rtn => res.status(200).json({
+      status: 'updated animal',
+      self: 'localhost:8000' + '/animals/' + req.params.id,
+      data: rtn
+    }))
+    .catch(err => res.status(400).json(err));
+});
+
+// DELETE (delete) -  delete a single instance by id
+router.delete('/:id', (req, res) => {
+  models.Animal.destroy({
+    where: { id: req.params.id }
+  })
+    .then(rtn => res.status(204).json({ status: 'deleteded animal'}))
+    .catch(err => res.status(400).json(err));
+});
 
 // // INDEX (get) - show all animals
 // router.get('/', (req, res) => {
