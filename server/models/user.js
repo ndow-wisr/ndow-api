@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
       set: val => {
         this.setDataValue('username', val.toLowerCase());
       }
-    }
+    },
     first_name: {
       type: DataTypes.STRING,
       validate: {

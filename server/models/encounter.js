@@ -13,9 +13,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     age: {
       type: DataTypes.REAL
-    }
-    source: {
-      type: DataTpes.STRING(50),
+    },
+    source_app: {
+      type: DataTypes.STRING(50),
       allowNull: false
     },
     enc_method: {
@@ -28,10 +28,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.TIME
     },
     start_handling: {
-      type: DataTypes.Time
+      type: DataTypes.TIME
     },
     end_handling: {
-      type: DataTypes.Time
+      type: DataTypes.TIME
     },
     comments: {
       type: DataTypes.TEXT
@@ -44,9 +44,9 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     user_id: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
       allowNull: false
-    }
+    },
     location_id: {
       type: DataTypes.INTEGER,
       allowNull: false
