@@ -5,8 +5,8 @@ const models = require('../models');
 // INDEX
 router.get('/', (req, res) => {
   models.User.findAll()
-  .then(rtn => res.status(200).json(rtn))
-  .catch(err => res.status(400).json(err));
+    .then(rtn => res.status(200).json(rtn))
+    .catch(err => res.status(400).json(err));
 })
 
 // CREATE
