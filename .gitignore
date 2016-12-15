@@ -3,3 +3,4 @@ server/config/*
 server/config/config.json
 *.DS_Store
 speciesList.js
+*.log

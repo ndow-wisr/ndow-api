@@ -8,6 +8,7 @@ const projects = require('./server/routes/projects');
 const locations = require('./server/routes/locations');
 const users = require('./server/routes/users');
 const abundances = require('./server/routes/abundances');
+const occurrences = require('./server/routes/occurences');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -21,6 +22,7 @@ app.use('/projects', projects);
 app.use('/locations', locations);
 app.use('/users', users);
 app.use('/abundances', abundances);
+app.use('/occurrences', occurrences);
 
 app.get('*', (req, res) => {
   res.status(200).json({
