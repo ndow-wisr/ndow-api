@@ -13,8 +13,9 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'animals',
     classMethods: {
       associate: (models) => {
-        Animal.hasMany(models.Encounter);
         Animal.belongsTo(models.Species, { onDelete: 'SET NULL' });
+        Animal.hasMany(models.Encounter);
+        Animal.hasMany(models.Telemetry);
       }
     }
   });
